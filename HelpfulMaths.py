@@ -1,6 +1,5 @@
-def helpfulMath(s:str) -> str:
-    number = s.split('+')
-    number.sort()
-    return '+'.join(number)
+s = input()
+numbers = s.split('+')
+numbers.sort()  # This works since '1' < '2' < '3' as strings
+print('+'.join(numbers))
 
-print(helpfulMath('1+2+3+6+2'))

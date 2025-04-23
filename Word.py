@@ -1,9 +1,26 @@
-word = input()
+T = int(input())
 
-lowercase_count = sum(1 for c in word if c.islower())
-uper_count = len(word) - lowercase_count
-if uper_count > lowercase_count : 
-    print(word.upper())
-else :
-    print(word.lower())
+for _ in range(T):
+    N, K, D = map(int, input().split())
+    Ti = list(map(int, input().split()))
 
+    flower_available_day = [0] * N
+    total_plucks = 0
+
+    for day in range(1, D + 1):
+        available_flowers = []
+        
+        for i in range(N):
+            if flower_available_day[i] < day:
+                available_flowers.append(i)
+        
+        can_pluck = len(available_flowers) - K
+        if can_pluck <= 0:
+            continue
+
+        for i in range(can_pluck):
+            idx = available_flowers[i]
+            flower_available_day[idx] = day + Ti[idx]
+            total_plucks += 1
+
+    print(total_plucks)
